@@ -11,6 +11,19 @@ import { render } from '@testing-library/react';
  * 3. Roles are dynamic. Must check role permissions to display actions.
  */
 
+const differentData = [
+  {
+    shopName: 'erer',
+    productName: 'erer',
+    price: 34.999,
+    data: {
+      name: 'iPhone'
+    }
+  }
+];
+
+// <whatever data> => normalize => dummyData (or shape of ItemTable.items prop)
+
 const dummyData = [{
   "id": 0,
   "shopId": 0,
