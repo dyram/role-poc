@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //api
-import { BACKEND } from "../../config";
+import { BACKEND } from "../../utils/datasource";
 
 // Initial State of the table reducer
 const initialState = {
