@@ -7,12 +7,17 @@ import { selectInventory, fetchInventory } from "../store/table/tableSlice";
 
 //components
 import { TableComp } from "../components/TableComp";
+import { UserModel } from "../utils/User";
 
 export function HomePage(props) {
   const { Text } = Typography;
   const dispatch = useDispatch();
+  const user = UserModel.getUser();
+  console.log({user});
 
   const inventory = useSelector(selectInventory);
+
+  // TODO: Create actions in table based on user.permissions
 
   useEffect(() => {
     dispatch(fetchInventory());
@@ -21,10 +26,12 @@ export function HomePage(props) {
   return (
     <>
       <Text style={{ letterSpacing: "4px", fontSize: "x-large" }}>
-        Hello Shoppers
+        Hello {user.name} - (Role type: {user.role})
       </Text>
 
-      <TableComp data={inventory} />
+      {
+        user.permissions.global.read ? <TableComp data={inventory} /> : ''
+      }
     </>
   );
 }
