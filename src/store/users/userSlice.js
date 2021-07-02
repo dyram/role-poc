@@ -7,6 +7,7 @@ import { BACKEND } from "../../utils/datasource";
 // Initial State of the user reducer
 const initialState = {
   user: { id: 1, name: "Mr. Customer", role: "customer" },
+  // user: { id: 0, name: "Mr. AppleShopKeeper", role: "shop_owner" },
   errors: { state: false, message: "" },
   status: "idle",
   roles: {},

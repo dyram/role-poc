@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Button } from "antd";
 
 export function TableComp(props) {
-  const { data, userPermissions, currentUser } = props;
+  const { data, userPermissions, currentShop } = props;
 
   //TODO:Normalize data to table from page-level
 
@@ -20,7 +20,8 @@ export function TableComp(props) {
             danger
             type="primary"
             disabled={
-              item.shopId !== currentUser.id && !userPermissions.global.delete
+              item.shopId !== currentShop[0]?.id &&
+              !userPermissions.global.delete
             }
           >
             Delete Item

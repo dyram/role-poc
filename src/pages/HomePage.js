@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Typography, Row, Col, Button } from "antd";
 
 //react-redux
@@ -69,7 +69,7 @@ export function HomePage(props) {
         <TableComp
           data={inventory}
           userPermissions={permissions}
-          currentUser={userDetails}
+          currentShop={shops?.filter((shop) => shop.ownerId === userDetails.id)}
         />
       ) : (
         ""
