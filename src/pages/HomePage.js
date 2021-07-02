@@ -35,7 +35,7 @@ export function HomePage(props) {
   //shop selectors
   const shops = useSelector(selectShops);
 
-  // TODO: Create actions in table based on user.permissions
+  // TODO : Check delete URL with Roshan
   // TODO: Check Normalizr package
 
   useEffect(() => {
