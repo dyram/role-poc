@@ -1,13 +1,33 @@
 import React from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 
 export function TableComp(props) {
-  const { data } = props;
+  const { data, userPermissions, currentUser } = props;
+
+  //TODO:Normalize data to table from page-level
 
   const buildColumns = (dataFromAPI) => {
     let columns = [];
+
     if (dataFromAPI) {
       const sampleDataItem = dataFromAPI[0];
+
+      let actions = {
+        title: "Action",
+        key: "action",
+        render: (item) => (
+          <Button
+            danger
+            type="primary"
+            disabled={
+              item.shopId !== currentUser.id && !userPermissions.global.delete
+            }
+          >
+            Delete Item
+          </Button>
+        ),
+      };
+
       if (sampleDataItem) {
         Object.keys(sampleDataItem).map((dataKey) => {
           let obj = {
@@ -19,6 +39,7 @@ export function TableComp(props) {
           };
           columns.push(obj);
         });
+        columns.push(actions);
       }
     }
     return columns;

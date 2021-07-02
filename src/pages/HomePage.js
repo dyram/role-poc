@@ -1,37 +1,79 @@
-import React, { useEffect } from "react";
-import { Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Typography, Row, Col, Button } from "antd";
 
-//redux
+//react-redux
 import { useSelector, useDispatch } from "react-redux";
+
+//redux - store
 import { selectInventory, fetchInventory } from "../store/table/tableSlice";
+import {
+  selectUser,
+  selectCurrentUserRole,
+  loginUser,
+  getAllRoles,
+} from "../store/users/userSlice";
+import { selectShops, getAllShops } from "../store/shops/shopSlice";
 
 //components
 import { TableComp } from "../components/TableComp";
-import { UserModel } from "../utils/User";
+import { LoginForm } from "../components/LoginForm";
+
+// import { UserModel } from "../utils/User";
 
 export function HomePage(props) {
   const { Text } = Typography;
   const dispatch = useDispatch();
-  const user = UserModel.getUser();
-  console.log({user});
 
+  //Default login
+  // const user = UserModel.getUser();
+
+  //table selectors
   const inventory = useSelector(selectInventory);
+  //user selectors
+  const userDetails = useSelector(selectUser);
+  const permissions = useSelector(selectCurrentUserRole);
+  //shop selectors
+  const shops = useSelector(selectShops);
 
   // TODO: Create actions in table based on user.permissions
+  // TODO: Check Normalizr package
 
   useEffect(() => {
     dispatch(fetchInventory());
+    dispatch(getAllRoles());
+    dispatch(getAllShops());
   }, []);
 
   return (
     <>
-      <Text style={{ letterSpacing: "4px", fontSize: "x-large" }}>
-        Hello {user.name} - (Role type: {user.role})
-      </Text>
+      <LoginForm
+        action={(e) => {
+          dispatch(loginUser(e));
+        }}
+      />
 
-      {
-        user.permissions.global.read ? <TableComp data={inventory} /> : ''
-      }
+      <Row justify="space-between" style={{ margin: "1% 0%" }}>
+        <Col span={16}>
+          <Text style={{ letterSpacing: "4px", fontSize: "x-large" }}>
+            Hello {userDetails.name} - (Role type: {userDetails.role})
+          </Text>
+        </Col>
+        <Col span={7}>
+          <Button type="primary" disabled={!permissions?.local.write}>
+            Add Item
+          </Button>
+        </Col>
+      </Row>
+
+      {permissions?.global.read ? (
+        <TableComp
+          data={inventory}
+          userPermissions={permissions}
+          currentUser={userDetails}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }
