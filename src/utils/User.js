@@ -14,6 +14,8 @@ export class UserModel {
     }
 
     static authenticate = async (username, password) => {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return true;
         const response = await axios.post(BACKEND.baseURL + "/login", {
             username, password
         });
