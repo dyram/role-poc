@@ -1,0 +1,130 @@
+{
+    "roles": {
+        "shop_owner": {
+            "global": {
+                "read": true,
+                "write": false,
+                "delete": false
+            },
+            "local": {
+                "read": true,
+                "write": true,
+                "delete": true
+            }
+        },
+        "customer": {
+            "global": {
+                "read": true,
+                "write": false,
+                "delete": false
+            },
+            "local": {
+                "read": false,
+                "write": false,
+                "delete": false
+            }
+        },
+        "admin": {
+            "global": {
+                "read": true,
+                "write": true,
+                "delete": true
+            },
+            "local": {
+                "read": true,
+                "write": true,
+                "delete": true
+            }
+        }
+    },
+    "users": [
+        {
+            "id": 0,
+            "name": "Mr. AppleShopkeeper",
+            "role": "shop_owner"
+        },
+        {
+            "id": 5,
+            "name": "Mr. SamsungShopkeeper",
+            "role": "shop_owner"
+        },
+        {
+            "id": 1,
+            "name": "Mr. Customer",
+            "role": "customer"
+        },
+        {
+            "id": 2,
+            "name": "Mr. Admin",
+            "role": "admin"
+        }
+    ],
+    "shops": [
+        {
+            "id": 0,
+            "ownerId": 0,
+            "name": "Apple Store"
+        },
+        {
+            "id": 6,
+            "ownerId": 5,
+            "name": "Samsung Store"
+        }
+    ],
+    "inventory": [
+        {
+            "id": 0,
+            "shopId": 0,
+            "name": "iPhone",
+            "price": "Rs 56000"
+        },
+        {
+            "id": 4,
+            "shopId": 0,
+            "name": "iPhone2",
+            "price": "Rs 156000"
+        },
+        {
+            "id": 7,
+            "shopId": 0,
+            "name": "iPhone3",
+            "price": "Rs 256000"
+        },
+        {
+            "id": 8,
+            "shopId": 0,
+            "name": "iPhone4",
+            "price": "Rs 356000"
+        },
+        {
+            "id": 10,
+            "shopId": 6,
+            "name": "galaxy1",
+            "price": "Rs 46000"
+        },
+        {
+            "id": 20,
+            "shopId": 6,
+            "name": "galaxy2",
+            "price": "Rs 34000"
+        },
+        {
+            "id": 30,
+            "shopId": 6,
+            "name": "galaxy3",
+            "price": "Rs 64000"
+        },
+        {
+            "id": 40,
+            "shopId": 6,
+            "name": "galaxy4",
+            "price": "Rs 23000"
+        },
+        {
+            "id": 50,
+            "shopId": 6,
+            "name": "galaxy5",
+            "price": "Rs 12000"
+        }
+    ]
+}

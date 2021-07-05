@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import mockData from "../../mockdata.json";
 
 //api
 import { BACKEND } from "../../utils/datasource";
@@ -17,8 +18,18 @@ const initialState = {
 export const loginUser = createAsyncThunk(
   "users/login",
   async (username, thunkAPI) => {
-    const response = await axios.post(BACKEND.baseURL + "/login", { username });
-    return response.data;
+    // const response = await axios.post(BACKEND.baseURL + "/login", { username });
+    // return response.data;
+    if(username.indexOf('shop1') > -1) {
+      return mockData.users[0];
+    }
+    if(username.indexOf('shop2') > -1) {
+      return mockData.users[1];
+    }
+    if(username.indexOf('admin') > -1) {
+      return mockData.users[3];
+    }
+    return mockData.users[2];
   }
 );
 
@@ -26,8 +37,9 @@ export const loginUser = createAsyncThunk(
 export const getAllRoles = createAsyncThunk(
   "users/getAllRoles",
   async (thunkAPI) => {
-    const response = await axios.get(BACKEND.baseURL + "/roles");
-    return response.data;
+    // const response = await axios.get(BACKEND.baseURL + "/roles");
+    // return response.data;
+    return mockData.roles;
   }
 );
 
